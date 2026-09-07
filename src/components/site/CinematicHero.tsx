@@ -8,7 +8,12 @@ import { ParticleField } from "@/components/site/ParticleField";
 import { RevealWords } from "@/components/site/Reveal";
 import { COMPANY } from "@/data/site";
 
-const TRUST = ["Quality Manufacturing", "Custom Valve Solutions", "Industrial Applications", "Nationwide Supply"];
+const TRUST = [
+  "Quality Manufacturing",
+  "Custom Valve Solutions",
+  "Industrial Applications",
+  "Nationwide Supply",
+];
 
 export function CinematicHero() {
   const ref = useRef<HTMLElement>(null);
@@ -50,9 +55,17 @@ export function CinematicHero() {
 
         <h1 className="mt-5 max-w-4xl text-4xl font-bold uppercase leading-[1.03] tracking-tight text-navy-foreground sm:text-6xl lg:text-7xl">
           <RevealWords text="Precision Engineered" />
-          <span className="block bg-clip-text text-transparent [background-image:var(--gradient-accent)]">
-            <RevealWords text="Industrial Valves" delay={0.18} />
-          </span>
+          {/* Rendered as a single animated element (not nested RevealWords) because a CSS
+              animation on a descendant promotes it to its own compositing layer, which
+              breaks background-clip: text on the ancestor and makes the gradient invisible. */}
+          <motion.span
+            className="block bg-clip-text text-transparent [background-image:var(--gradient-accent)]"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
+          >
+            Industrial Valves
+          </motion.span>
           <RevealWords text="For Critical Applications" delay={0.36} />
         </h1>
 

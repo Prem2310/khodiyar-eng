@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Clock, MessageCircle, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/site/Reveal";
 import { BLOG_POSTS, whatsappLink } from "@/data/site";
 
 type Post = (typeof BLOG_POSTS)[number];
@@ -65,16 +66,16 @@ function BlogPost() {
       </section>
 
       <article className="py-16">
-        <div className="container-x max-w-3xl space-y-6 text-sm sm:text-base leading-relaxed text-muted-foreground">
+        <Reveal className="container-x max-w-3xl space-y-6 text-sm sm:text-base leading-relaxed text-muted-foreground">
           {post.body.map((para: string, i: number) => (
             <p key={i} className="leading-relaxed">
               {para}
             </p>
           ))}
-        </div>
+        </Reveal>
 
         {/* Action Callout Box */}
-        <div className="container-x mt-12 max-w-3xl">
+        <Reveal delay={0.15} className="container-x mt-12 max-w-3xl">
           <div className="surface-panel rounded-sm p-6 sm:p-8 bg-card border-l-4 border-l-accent flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
             <div>
               <h3 className="font-display text-base font-bold uppercase">
@@ -91,7 +92,9 @@ function BlogPost() {
               </Button>
               <Button asChild variant="outline" size="sm">
                 <a
-                  href={whatsappLink(`Hello Khodiyar Engineering, I read your article "${post.title}" and need valve advice.`)}
+                  href={whatsappLink(
+                    `Hello Khodiyar Engineering, I read your article "${post.title}" and need valve advice.`,
+                  )}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -100,7 +103,7 @@ function BlogPost() {
               </Button>
             </div>
           </div>
-        </div>
+        </Reveal>
       </article>
     </>
   );
