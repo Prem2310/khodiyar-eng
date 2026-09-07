@@ -1,7 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useInView, useMotionValue, useScroll, useSpring, useTransform } from "motion/react";
-import { ArrowRight, CheckCircle2, ShieldCheck, Calculator, Sparkles, Layers, FileSpreadsheet } from "lucide-react";
+import {
+  motion,
+  useInView,
+  useMotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "motion/react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  ShieldCheck,
+  Calculator,
+  Sparkles,
+  Layers,
+  FileSpreadsheet,
+} from "lucide-react";
 import engineerImg from "@/assets/engineer-inspection.jpg";
 import pipelineImg from "@/assets/pipeline.jpg";
 import { Button } from "@/components/ui/button";
@@ -14,6 +29,7 @@ import { ParticleField } from "@/components/site/ParticleField";
 import { ValveFlowSimulator } from "@/components/site/ValveFlowSimulator";
 import { ValveSizingCalculator } from "@/components/site/ValveSizingCalculator";
 import { ValveComparisonMatrix } from "@/components/site/ValveComparisonMatrix";
+import { Testimonials } from "@/components/site/Testimonials";
 import { StructuredData } from "@/components/site/StructuredData";
 import { INDUSTRIES, PRODUCTS } from "@/data/site";
 
@@ -26,7 +42,10 @@ export const Route = createFileRoute("/")({
         content:
           "Precision engineered ball, butterfly, gate, globe, check, plug, dairy and pneumatic valves manufactured in Ahmedabad, Gujarat for critical chemical, pharma, dairy, water, and oil & gas plants.",
       },
-      { property: "og:title", content: "Khodiyar Engineering | Industrial Valve Manufacturer Ahmedabad" },
+      {
+        property: "og:title",
+        content: "Khodiyar Engineering | Industrial Valve Manufacturer Ahmedabad",
+      },
       {
         property: "og:description",
         content:
@@ -180,7 +199,9 @@ function Home() {
                     <h3 className="font-display text-base sm:text-lg font-semibold uppercase tracking-wide">
                       {item.title}
                     </h3>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                      {item.text}
+                    </p>
                   </div>
                 </Reveal>
               ))}
@@ -228,7 +249,9 @@ function Home() {
               <div className="font-display text-4xl font-bold text-accent sm:text-5xl">
                 <Counter value={s.value} suffix={s.suffix} />
               </div>
-              <div className="mt-2 text-xs sm:text-sm uppercase tracking-[0.16em] opacity-80">{s.label}</div>
+              <div className="mt-2 text-xs sm:text-sm uppercase tracking-[0.16em] opacity-80">
+                {s.label}
+              </div>
             </Reveal>
           ))}
         </div>
@@ -254,7 +277,9 @@ function Home() {
                       <h3 className="mt-4 font-display text-base font-semibold uppercase tracking-wide">
                         {i.name}
                       </h3>
-                      <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{i.description}</p>
+                      <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+                        {i.description}
+                      </p>
                     </div>
                     <div className="mt-4 pt-3 border-t border-border/60">
                       <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
@@ -332,6 +357,9 @@ function Home() {
           </Reveal>
         </div>
       </section>
+
+      {/* Client Testimonials */}
+      <Testimonials />
 
       {/* Call to Action Bar */}
       <section className="py-24">

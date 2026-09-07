@@ -1,6 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Award, FlaskConical, Gauge, Ruler, ShieldCheck, Droplets, CheckCircle2, FileCheck } from "lucide-react";
+import {
+  Award,
+  FlaskConical,
+  Gauge,
+  Ruler,
+  ShieldCheck,
+  Droplets,
+  CheckCircle2,
+  FileCheck,
+} from "lucide-react";
 import { PageHero, SectionHeading } from "@/components/site/Section";
+import { Reveal } from "@/components/site/Reveal";
 import { Button } from "@/components/ui/button";
 import engineerImg from "@/assets/engineer-inspection.jpg";
 import pipelineImg from "@/assets/pipeline.jpg";
@@ -18,7 +28,8 @@ export const Route = createFileRoute("/quality")({
       { property: "og:title", content: "Quality Assurance & Valve Testing | Khodiyar Engineering" },
       {
         property: "og:description",
-        content: "How we inspect, pressure test, and certify every industrial valve before dispatch.",
+        content:
+          "How we inspect, pressure test, and certify every industrial valve before dispatch.",
       },
     ],
   }),
@@ -59,11 +70,31 @@ const CHECKS = [
 ];
 
 const TEST_STEPS = [
-  { step: "01", title: "Raw Material Inflow", desc: "Chemical heat analysis, PMI test verification, and ultrasonic check for casting voids." },
-  { step: "02", title: "CNC Machining & Bore Check", desc: "Seat diameter, stem finish Ra < 0.4µm, and flange face serration inspection." },
-  { step: "03", title: "Clean Assembly", desc: "Torque-controlled gland packing installation and precision seat ring seating." },
-  { step: "04", title: "Hydro & Pneumatic Testing", desc: "Full shell test, high-pressure liquid seat test, and 6 bar pneumatic bubble test." },
-  { step: "05", title: "Final Documentation", desc: "EN 10204 3.1 MTC generation, protective end capping, and rust-proof packaging." },
+  {
+    step: "01",
+    title: "Raw Material Inflow",
+    desc: "Chemical heat analysis, PMI test verification, and ultrasonic check for casting voids.",
+  },
+  {
+    step: "02",
+    title: "CNC Machining & Bore Check",
+    desc: "Seat diameter, stem finish Ra < 0.4µm, and flange face serration inspection.",
+  },
+  {
+    step: "03",
+    title: "Clean Assembly",
+    desc: "Torque-controlled gland packing installation and precision seat ring seating.",
+  },
+  {
+    step: "04",
+    title: "Hydro & Pneumatic Testing",
+    desc: "Full shell test, high-pressure liquid seat test, and 6 bar pneumatic bubble test.",
+  },
+  {
+    step: "05",
+    title: "Final Documentation",
+    desc: "EN 10204 3.1 MTC generation, protective end capping, and rust-proof packaging.",
+  },
 ];
 
 function QualityPage() {
@@ -79,16 +110,20 @@ function QualityPage() {
       <section className="py-16 sm:py-20">
         <div className="container-x">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {CHECKS.map((c) => (
-              <div key={c.title} className="surface-panel rounded-sm p-6 flex flex-col justify-between">
-                <div>
-                  <c.icon className="h-7 w-7 text-accent" />
-                  <h2 className="mt-4 font-display text-lg font-semibold uppercase tracking-wide">
-                    {c.title}
-                  </h2>
-                  <p className="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground">{c.text}</p>
+            {CHECKS.map((c, i) => (
+              <Reveal key={c.title} delay={(i % 3) * 0.08}>
+                <div className="surface-panel h-full rounded-sm p-6 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1 hover:border-accent">
+                  <div>
+                    <c.icon className="h-7 w-7 text-accent" />
+                    <h2 className="mt-4 font-display text-lg font-semibold uppercase tracking-wide">
+                      {c.title}
+                    </h2>
+                    <p className="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground">
+                      {c.text}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -97,21 +132,25 @@ function QualityPage() {
       {/* 5-Step Inspection Lifecycle */}
       <section className="bg-navy-gradient py-16 sm:py-20 text-navy-foreground">
         <div className="container-x">
-          <div className="max-w-2xl">
-            <div className="eyebrow text-accent">Inspection roadmap</div>
-            <h2 className="mt-2 text-2xl font-bold uppercase tracking-tight sm:text-3xl text-navy-foreground">
-              From Raw Ingot to Dispatched Valve
-            </h2>
-          </div>
+          <Reveal>
+            <div className="max-w-2xl">
+              <div className="eyebrow text-accent">Inspection roadmap</div>
+              <h2 className="mt-2 text-2xl font-bold uppercase tracking-tight sm:text-3xl text-navy-foreground">
+                From Raw Ingot to Dispatched Valve
+              </h2>
+            </div>
+          </Reveal>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {TEST_STEPS.map((s) => (
-              <div key={s.step} className="rounded-sm border border-white/15 bg-white/5 p-5 backdrop-blur-sm">
-                <div className="font-display text-2xl font-bold text-accent">{s.step}</div>
-                <h3 className="mt-2 font-display text-sm font-semibold uppercase tracking-wide text-navy-foreground">
-                  {s.title}
-                </h3>
-                <p className="mt-2 text-xs text-navy-foreground/75 leading-relaxed">{s.desc}</p>
-              </div>
+            {TEST_STEPS.map((s, i) => (
+              <Reveal key={s.step} delay={i * 0.08}>
+                <div className="h-full rounded-sm border border-white/15 bg-white/5 p-5 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1">
+                  <div className="font-display text-2xl font-bold text-accent">{s.step}</div>
+                  <h3 className="mt-2 font-display text-sm font-semibold uppercase tracking-wide text-navy-foreground">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 text-xs text-navy-foreground/75 leading-relaxed">{s.desc}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -120,15 +159,17 @@ function QualityPage() {
       {/* Inspection Facility Showcase */}
       <section className="bg-surface py-16 sm:py-20">
         <div className="container-x grid items-center gap-12 lg:grid-cols-2">
-          <img
-            src={engineerImg}
-            alt="Quality inspection and hydro testing of industrial valves"
-            loading="lazy"
-            width={1400}
-            height={1000}
-            className="w-full rounded-sm object-cover shadow-[var(--shadow-industrial)]"
-          />
-          <div>
+          <Reveal>
+            <img
+              src={engineerImg}
+              alt="Quality inspection and hydro testing of industrial valves"
+              loading="lazy"
+              width={1400}
+              height={1000}
+              className="w-full rounded-sm object-cover shadow-[var(--shadow-industrial)]"
+            />
+          </Reveal>
+          <Reveal delay={0.15}>
             <SectionHeading
               eyebrow="Documentation & Traceability"
               title="Test Certificates Shipped With Every Order"
@@ -154,7 +195,9 @@ function QualityPage() {
               </Button>
               <Button asChild variant="outline">
                 <a
-                  href={whatsappLink("Hello Khodiyar Engineering, please share a sample EN 10204 3.1 test certificate.")}
+                  href={whatsappLink(
+                    "Hello Khodiyar Engineering, please share a sample EN 10204 3.1 test certificate.",
+                  )}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -162,7 +205,7 @@ function QualityPage() {
                 </a>
               </Button>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
     </>

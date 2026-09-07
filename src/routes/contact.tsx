@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Mail, MapPin, MessageCircle, Phone, Clock, ShieldCheck, FileCheck } from "lucide-react";
 import { PageHero } from "@/components/site/Section";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
+import { Reveal } from "@/components/site/Reveal";
 import { COMPANY, whatsappLink } from "@/data/site";
 
 export const Route = createFileRoute("/contact")({
@@ -16,7 +17,8 @@ export const Route = createFileRoute("/contact")({
       { property: "og:title", content: "Contact Khodiyar Engineering Ahmedabad" },
       {
         property: "og:description",
-        content: "Send your valve requirements, line drawing, and receive an engineering quotation.",
+        content:
+          "Send your valve requirements, line drawing, and receive an engineering quotation.",
       },
     ],
   }),
@@ -35,7 +37,7 @@ function ContactPage() {
       <section className="py-16 sm:py-20">
         <div className="container-x grid gap-12 lg:grid-cols-[1fr_380px]">
           {/* Main Form Box */}
-          <div className="surface-panel rounded-sm p-6 sm:p-8 bg-card shadow-sm">
+          <Reveal className="surface-panel rounded-sm p-6 sm:p-8 bg-card shadow-sm">
             <h2 className="font-display text-xl font-semibold uppercase tracking-wide">
               Technical Quotation Enquiry
             </h2>
@@ -45,11 +47,11 @@ function ContactPage() {
             <div className="mt-6">
               <EnquiryForm />
             </div>
-          </div>
+          </Reveal>
 
           {/* Plant & Contact Sidebar */}
           <aside className="space-y-6">
-            <div className="surface-panel rounded-sm p-6 bg-card space-y-5">
+            <Reveal delay={0.1} className="surface-panel rounded-sm p-6 bg-card space-y-5">
               <h2 className="font-display text-lg font-semibold uppercase tracking-wide">
                 Plant Location &amp; Contact
               </h2>
@@ -90,15 +92,13 @@ function ContactPage() {
                 </li>
                 <li className="flex gap-3">
                   <Clock className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                  <span className="text-muted-foreground">
-                    Mon – Sat: 09:00 AM – 07:00 PM IST
-                  </span>
+                  <span className="text-muted-foreground">Mon – Sat: 09:00 AM – 07:00 PM IST</span>
                 </li>
               </ul>
-            </div>
+            </Reveal>
 
             {/* Trust Assurances */}
-            <div className="surface-panel rounded-sm p-6 bg-card space-y-3">
+            <Reveal delay={0.18} className="surface-panel rounded-sm p-6 bg-card space-y-3">
               <h3 className="font-display text-sm font-semibold uppercase text-accent">
                 Customer Guarantees
               </h3>
@@ -116,17 +116,17 @@ function ContactPage() {
                   <span>12 Months Standard Factory Warranty</span>
                 </div>
               </div>
-            </div>
+            </Reveal>
 
             {/* Location Map */}
-            <div className="surface-panel overflow-hidden rounded-sm bg-card">
+            <Reveal delay={0.26} className="surface-panel overflow-hidden rounded-sm bg-card">
               <iframe
                 title="Khodiyar Engineering Ahmedabad location map"
                 src="https://www.google.com/maps?q=Vastral,+Ahmedabad,+Gujarat&output=embed"
                 loading="lazy"
                 className="h-56 w-full border-0"
               />
-            </div>
+            </Reveal>
           </aside>
         </div>
       </section>

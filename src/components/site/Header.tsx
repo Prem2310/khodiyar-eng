@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { COMPANY, whatsappLink } from "@/data/site";
 import { QuickQuoteDrawer, useBom } from "./QuickQuoteDrawer";
 import { QuickSearchModal } from "./QuickSearchModal";
+import { ThemeToggle } from "./ThemeToggle";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -117,6 +118,9 @@ export function Header() {
               )}
             </button>
 
+            {/* Dark / Light Mode */}
+            <ThemeToggle />
+
             {/* Request Quote Main CTA */}
             <Button asChild size="sm" className="hidden sm:inline-flex shadow-sm">
               <Link to="/contact">Request Quote</Link>
@@ -174,10 +178,7 @@ export function Header() {
 
       {/* Global Modals & Drawers */}
       <QuickSearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
-      <QuickQuoteDrawer
-        isOpen={isQuoteDrawerOpen}
-        onClose={() => setIsQuoteDrawerOpen(false)}
-      />
+      <QuickQuoteDrawer isOpen={isQuoteDrawerOpen} onClose={() => setIsQuoteDrawerOpen(false)} />
     </>
   );
 }

@@ -9,18 +9,16 @@ import pneumatic from "@/assets/valve-pneumatic.jpg";
 import ytypestrainer from "@/assets/valve-ytype.png";
 import ttypestrainer from "@/assets/valve-ttype.png";
 
-
-
 export const COMPANY = {
   name: "Khodiyar Engineering",
   tagline: "Precision Engineered Industrial Valves",
   city: "Rita Nagar, Ahmedabad",
-  address: "Shop no-2, Amardeep Apartment, opp. Bagefirdos School, Rita Nagar, Amraiwadi, Ahmedabad, Gujarat 380026",
+  address:
+    "Shop no-2, Amardeep Apartment, opp. Bagefirdos School, Rita Nagar, Amraiwadi, Ahmedabad, Gujarat 380026",
   phone: "+91 8200653739",
   whatsapp: "919998725724",
   email: "sales@khodiyarengineering.in",
-  whatsappMessage:
-    "Hello Khodiyar Engineering, I need quotation for industrial valves.",
+  whatsappMessage: "Hello Khodiyar Engineering, I need quotation for industrial valves.",
 };
 
 export const whatsappLink = (message: string = COMPANY.whatsappMessage) =>
@@ -222,7 +220,7 @@ export const PRODUCTS: Product[] = [
       { label: "Operation", value: "Double Acting / Spring Return" },
     ],
     applications: ["Pharma", "Chemical", "Water Treatment", "Automation"],
-  }
+  },
 ];
 
 export const VALVE_TYPES = [
@@ -256,8 +254,7 @@ export const INDUSTRIES = [
   {
     slug: "dairy",
     name: "Dairy Industry",
-    description:
-      "Food-grade SMS and tri-clamp valves engineered for milk, cream and CIP circuits.",
+    description: "Food-grade SMS and tri-clamp valves engineered for milk, cream and CIP circuits.",
     valves: ["Sanitary Dairy Valves", "SMS Butterfly Valves"],
   },
   {
@@ -294,6 +291,72 @@ export const INDUSTRIES = [
     description:
       "Dyeing, bleaching and utility line valves resistant to hot water, steam and chemicals.",
     valves: ["Ball Valves", "Plug Valves"],
+  },
+];
+
+export type Testimonial = {
+  name: string;
+  role: string;
+  company: string;
+  industry: string;
+  quote: string;
+  rating: number;
+};
+
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    name: "Rakesh Shah",
+    role: "Purchase Manager",
+    company: "Anupam Chemicals Pvt. Ltd.",
+    industry: "Chemical Industry",
+    quote:
+      "We switched our PTFE-lined ball valve sourcing to Khodiyar Engineering two years ago. Every batch arrives with proper MTC documentation and the hydro test reports we need for our audits — zero rejections since.",
+    rating: 5,
+  },
+  {
+    name: "Priya Patel",
+    role: "Plant Engineer",
+    company: "Sunrise Dairy Products",
+    industry: "Dairy Industry",
+    quote:
+      "The SS316L sanitary butterfly valves hold up perfectly under daily CIP cycles. Their engineering desk helped us match tri-clamp fittings to our existing lines within a day of enquiry.",
+    rating: 5,
+  },
+  {
+    name: "Vikram Mehta",
+    role: "Procurement Head",
+    company: "Meta Pharma Formulations",
+    industry: "Pharmaceutical Industry",
+    quote:
+      "GMP documentation, traceability and consistent surface finish were non-negotiable for us. Khodiyar delivered every time, and their quotation turnaround is faster than any other regional supplier we've used.",
+    rating: 5,
+  },
+  {
+    name: "Sanjay Rathod",
+    role: "EPC Project Manager",
+    company: "Rathod Infra Engineering",
+    industry: "EPC / Water Treatment",
+    quote:
+      "For our municipal water treatment project we needed bulk gate and check valves on a tight schedule. They committed to a dispatch date and honoured it — no surprises across three shipment lots.",
+    rating: 4,
+  },
+  {
+    name: "Alok Desai",
+    role: "Maintenance Manager",
+    company: "Desai Steel & Power",
+    industry: "Power Plants",
+    quote:
+      "Their globe valves handle our high-temperature steam lines reliably, and the technical team was genuinely useful when we needed help sizing a control valve for a retrofit.",
+    rating: 5,
+  },
+  {
+    name: "Farhan Qureshi",
+    role: "Export Buyer",
+    company: "Qureshi Trading FZE",
+    industry: "Export / Oil & Gas",
+    quote:
+      "We import valve consignments for Gulf-region clients. Khodiyar's packaging, certification and factory pricing make them our preferred Indian sourcing partner for ball and check valves.",
+    rating: 5,
   },
 ];
 
