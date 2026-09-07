@@ -1,8 +1,18 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { Download, MessageCircle, PhoneCall, ShoppingBag, Layers, Calculator, ShieldCheck, Check } from "lucide-react";
+import {
+  Download,
+  MessageCircle,
+  PhoneCall,
+  ShoppingBag,
+  Layers,
+  Calculator,
+  ShieldCheck,
+  Check,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { TechnicalSpecTable } from "@/components/site/TechnicalSpecTable";
+import { Reveal } from "@/components/site/Reveal";
 import { useBom } from "@/components/site/QuickQuoteDrawer";
 import { PRODUCTS, whatsappLink, COMPANY, type Product } from "@/data/site";
 
@@ -39,9 +49,13 @@ function ProductDetail() {
       <section className="bg-navy-gradient py-10 text-navy-foreground">
         <div className="container-x flex items-center justify-between text-xs opacity-90">
           <div>
-            <Link to="/" className="hover:text-accent transition-colors">Home</Link>
+            <Link to="/" className="hover:text-accent transition-colors">
+              Home
+            </Link>
             <span className="mx-2">/</span>
-            <Link to="/products" className="hover:text-accent transition-colors">Products</Link>
+            <Link to="/products" className="hover:text-accent transition-colors">
+              Products
+            </Link>
             <span className="mx-2">/</span>
             <span className="text-accent font-semibold">{product.name}</span>
           </div>
@@ -55,7 +69,7 @@ function ProductDetail() {
       <section className="py-14 sm:py-20">
         <div className="container-x grid gap-12 lg:grid-cols-2">
           {/* Product Media Column */}
-          <div>
+          <Reveal>
             <div className="surface-panel overflow-hidden rounded-sm p-2 bg-card">
               <img
                 src={product.image}
@@ -96,10 +110,10 @@ function ProductDetail() {
                 <span className="font-medium">EN 10204 3.1 Traceable</span>
               </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* Product Specifications Column */}
-          <div>
+          <Reveal delay={0.15}>
             <div className="eyebrow">Technical Specification</div>
             <h1 className="mt-2 text-3xl font-bold uppercase tracking-tight sm:text-4xl">
               {product.name}
@@ -183,29 +197,34 @@ function ProductDetail() {
                 <PhoneCall className="h-4 w-4 text-accent" /> Talk to Sales Engineer
               </a>
             </div>
-          </div>
+          </Reveal>
         </div>
 
         {/* Detailed Flange & Material Technical Specification Table */}
-        <div className="container-x">
+        <Reveal className="container-x">
           <TechnicalSpecTable product={product} />
-        </div>
+        </Reveal>
       </section>
 
       {/* Enquiry Form Section */}
       <section id="enquiry" className="bg-surface py-16 sm:py-20">
         <div className="container-x max-w-4xl">
-          <div className="eyebrow">Direct factory quote</div>
-          <h2 className="mt-1 text-2xl font-bold uppercase tracking-tight sm:text-3xl">
-            Request Quotation — {product.name}
-          </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Share your required line size, material of construction (SS304/SS316/WCB), and pressure
-            rating. Our engineering team responds with technical specifications and unit pricing.
-          </p>
-          <div className="surface-panel mt-8 rounded-sm p-6 sm:p-8">
-            <EnquiryForm defaultProduct={product.name} />
-          </div>
+          <Reveal>
+            <div className="eyebrow">Direct factory quote</div>
+            <h2 className="mt-1 text-2xl font-bold uppercase tracking-tight sm:text-3xl">
+              Request Quotation — {product.name}
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Share your required line size, material of construction (SS304/SS316/WCB), and
+              pressure rating. Our engineering team responds with technical specifications and unit
+              pricing.
+            </p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="surface-panel mt-8 rounded-sm p-6 sm:p-8">
+              <EnquiryForm defaultProduct={product.name} />
+            </div>
+          </Reveal>
           <a
             href={whatsappLink(`Hello Khodiyar Engineering, I need quotation for ${product.name}.`)}
             target="_blank"

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ShoppingBag, Calculator, ShieldCheck, Check } from "lucide-react";
 import { PageHero } from "@/components/site/Section";
+import { Reveal } from "@/components/site/Reveal";
 import { PRODUCTS, type Product } from "@/data/site";
 import { Button } from "@/components/ui/button";
 import { useBom } from "@/components/site/QuickQuoteDrawer";
@@ -31,7 +32,8 @@ function ProductsPage() {
   const { addItem } = useBom();
 
   const filteredProducts = PRODUCTS.filter((p) => {
-    if (filter === "isolation") return p.slug.includes("ball") || p.slug.includes("gate") || p.slug.includes("butterfly");
+    if (filter === "isolation")
+      return p.slug.includes("ball") || p.slug.includes("gate") || p.slug.includes("butterfly");
     if (filter === "steam") return p.slug.includes("globe") || p.slug.includes("gate");
     if (filter === "sanitary") return p.slug.includes("dairy") || p.slug.includes("butterfly");
     if (filter === "actuated") return p.slug.includes("pneumatic");
@@ -101,62 +103,61 @@ function ProductsPage() {
       {/* Product Grid */}
       <section className="py-16 sm:py-20">
         <div className="container-x grid gap-8 md:grid-cols-2">
-          {filteredProducts.map((p) => (
-            <article
-              key={p.slug}
-              className="surface-panel grid overflow-hidden rounded-sm sm:grid-cols-[220px_1fr] bg-card hover:border-accent transition-colors"
-            >
-              <img
-                src={p.image}
-                alt={`${p.name} — precision industrial valve`}
-                loading="lazy"
-                width={1024}
-                height={1024}
-                className="h-full w-full object-cover aspect-square sm:aspect-auto"
-              />
-              <div className="p-6 flex flex-col justify-between">
-                <div>
-                  <h2 className="font-display text-xl font-semibold uppercase tracking-wide">
-                    {p.name}
-                  </h2>
-                  <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{p.short}</p>
-                  <ul className="mt-4 flex flex-wrap gap-1.5">
-                    {p.applications.map((a) => (
-                      <li
-                        key={a}
-                        className="rounded-full bg-secondary px-2.5 py-0.5 text-[11px] font-medium text-secondary-foreground"
-                      >
-                        {a}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+          {filteredProducts.map((p, i) => (
+            <Reveal key={p.slug} delay={(i % 4) * 0.06}>
+              <article className="surface-panel grid h-full overflow-hidden rounded-sm sm:grid-cols-[220px_1fr] bg-card transition-all duration-300 hover:-translate-y-1 hover:border-accent">
+                <img
+                  src={p.image}
+                  alt={`${p.name} — precision industrial valve`}
+                  loading="lazy"
+                  width={1024}
+                  height={1024}
+                  className="h-full w-full object-cover aspect-square sm:aspect-auto"
+                />
+                <div className="p-6 flex flex-col justify-between">
+                  <div>
+                    <h2 className="font-display text-xl font-semibold uppercase tracking-wide">
+                      {p.name}
+                    </h2>
+                    <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{p.short}</p>
+                    <ul className="mt-4 flex flex-wrap gap-1.5">
+                      {p.applications.map((a) => (
+                        <li
+                          key={a}
+                          className="rounded-full bg-secondary px-2.5 py-0.5 text-[11px] font-medium text-secondary-foreground"
+                        >
+                          {a}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-                <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-border/60 pt-4">
-                  <Button asChild variant="default" size="sm">
-                    <Link to="/products/$slug" params={{ slug: p.slug }}>
-                      Technical Details <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
-                    </Link>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() =>
-                      addItem({
-                        valveType: p.name,
-                        size: '2" (DN50)',
-                        material: "SS316",
-                        pressure: "Class 150 / PN16",
-                        connection: "Flanged ASME B16.5",
-                        qty: 1,
-                      })
-                    }
-                  >
-                    <ShoppingBag className="mr-1.5 h-3.5 w-3.5" /> Add to BOM
-                  </Button>
+                  <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-border/60 pt-4">
+                    <Button asChild variant="default" size="sm">
+                      <Link to="/products/$slug" params={{ slug: p.slug }}>
+                        Technical Details <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                      </Link>
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() =>
+                        addItem({
+                          valveType: p.name,
+                          size: '2" (DN50)',
+                          material: "SS316",
+                          pressure: "Class 150 / PN16",
+                          connection: "Flanged ASME B16.5",
+                          qty: 1,
+                        })
+                      }
+                    >
+                      <ShoppingBag className="mr-1.5 h-3.5 w-3.5" /> Add to BOM
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
+            </Reveal>
           ))}
         </div>
       </section>
